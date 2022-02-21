@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.example</groupId>
+    <artifactId>demo-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>demo-parent</name>
+    <description>spring demo案例父类</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>demo-mybatis</module>
+        <module>demo-mybatis-plus</module>
+        <module>demo-mybatis-plus-auto-generator</module>
+        <module>demo-mybatis-shardingjdbc</module>
+        <module>demo-closure-table</module>
+        <module>demo-mybatis-generation</module>
+        <module>demo-common</module>
+        <module>demo-design-pattern</module>
+        <module>demo-spring5</module>
+        <module>demo-juc</module>
+        <module>demo-jdknew</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <springboot.web>2.3.0.RELEASE</springboot.web>
+        <mysql.version>8.0.20</mysql.version>
+        <lombok.version>1.18.12</lombok.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <mybatis-plus-generator.version>3.3.2</mybatis-plus-generator.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <!-- 去除旧log依赖 -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency> <!-- 引入log4j2依赖 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+<!--            <scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${springboot.web}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <scope>runtime</scope>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <optional>true</optional>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--  扫描包路径，多个路径可以用逗号分隔，扫描包下面所有带注解的类
+      -->
+    <context:component-scan base-package="com.acrt.example.demos.pring5.tt_temp"/>
+
+    <!--  扫描自定义规则的类  -->
+<!--    <context:component-scan base-package="com.acrt.example.demos.pring5.tt_temp" use-default-filters="false">-->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->
+<!--    </context:component-scan>-->
+<!--    <context:component-scan base-package="com.acrt.example.demos.pring5.tt_temp">-->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>-->
+<!--    </context:component-scan>-->
+</beans>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.closuretable.mapper.DemoTreeMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.closuretable.model.DemoTree">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="ancestor" jdbcType="INTEGER" property="ancestor"/>
+        <result column="descendant" jdbcType="INTEGER" property="descendant"/>
+        <result column="depth" jdbcType="INTEGER" property="depth"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, ancestor, descendant, depth
+  </sql>
+    <!-- 增加节点  -->
+    <insert id="insert">
+     INSERT INTO demo_tree(ancestor, descendant, depth)
+     SELECT t.ancestor, #{newId}, t.depth + 1
+     FROM demo_tree AS t WHERE descendant = #{parentId}
+     UNION
+     SELECT #{newId}, #{newId}, 0;
+   </insert>
+
+    <!--  批量插入  -->
+    <insert id="batchInsert">
+        <foreach collection="list" item="item" separator=";">
+            INSERT INTO demo_tree(ancestor, descendant, depth)
+            SELECT t.ancestor, #{item.descendant}, t.depth + 1
+            FROM demo_tree AS t WHERE descendant = #{item.ancestor}
+            UNION
+            SELECT #{item.descendant}, #{item.descendant}, 0
+        </foreach>
+    </insert>
+
+    <!--  删除节点  -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    DELETE FROM demo_tree
+    WHERE descendant IN(SELECT descendant FROM (SELECT descendant, ancestor FROM demo_tree) t WHERE ancestor = #{id});
+  </delete>
+    <!-- 查询节点 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from demo_tree
+        where descendant = #{descendant,jdbcType=INTEGER}
+        limit 1
+    </select>
+    <!-- 某节点下节点的关系链（有序） -->
+    <select id="selectChain" resultType="com.example.demo.closuretable.model.DemoTreeChain">
+        select descendant id, GROUP_CONCAT(ancestor ORDER BY depth desc SEPARATOR ',') idChain
+        from demo_tree
+        <if test="id != null">
+            where descendant in (select descendant from demo_tree where ancestor = #{id})
+        </if>
+        group by descendant
+    </select>
+    <!-- 某节点的关系链（有序） -->
+    <select id="selectAllAncestorByDescendant" resultType="java.lang.Integer">
+        SELECT ancestor
+        FROM demo_tree
+        <if test="id != null">
+            WHERE descendant = #{descendant}
+        </if>
+        ORDER BY depth desc
+    </select>
+
+    <!-- 移动节点 -->
+    <update id="move">
+        DELETE FROM demo_tree
+        WHERE
+            descendant IN (SELECT d.descendant FROM (SELECT * FROM demo_tree where ancestor=#{fromId}) d)
+            AND
+            ancestor IN (SELECT a.ancestor FROM (SELECT * FROM demo_tree WHERE descendant=#{fromId} AND ancestor &lt;&gt; descendant) a);
+        INSERT INTO demo_tree(ancestor,descendant,depth)
+        SELECT super.ancestor, sub.descendant, super.depth + sub.depth + 1
+        FROM demo_tree super
+        CROSS JOIN demo_tree sub
+        WHERE super.descendant = #{toId} AND sub.ancestor = #{fromId}
+  </update>
+</mapper>

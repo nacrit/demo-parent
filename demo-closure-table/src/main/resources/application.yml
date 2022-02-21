@@ -1,0 +1,14 @@
+
+spring:
+  datasource:
+    #    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/demo_parent?useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+#logging:
+#  level:
+#    com.example.demo.closuretable.mapper: debug

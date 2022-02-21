@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="emp" class="com.acrt.example.demos.pring5.tt_temp.Emp">
+        <property name="dept" ref="dept"/>
+    </bean>
+    <!--    <bean id="emp" class="com.acrt.example.demos.pring5.tt_temp.Emp" autowire="byName"/>-->
+    <!--    <bean id="emp" class="com.acrt.example.demos.pring5.tt_temp.Emp" autowire="byType"/>-->
+    <bean id="dept" class="com.acrt.example.demos.pring5.tt_temp.Dept">
+        <property name="name" value="部门A"/>
+    </bean>
+
+    <!--    引入外部文件-->
+    <context:property-placeholder location="classpath:tt-temp.properties" />
+    <bean id="dept2" class="com.acrt.example.demos.pring5.tt_temp.Dept">
+        <property name="name" value="${dept.name}"/>
+    </bean>
+</beans>
