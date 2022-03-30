@@ -1,7 +1,8 @@
 
-create databases db0;
-create databases db1;
-create databases db2;
+create database db0;
+create database db1;
+create database db2;
+
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `id` int NOT NULL,
