@@ -10,7 +10,8 @@
 8. demo-design-pattern 深入浅出设计模式
 9. demo-spring5 spring5学习
 10. demo-juc java并发编程案例
-11. jdk新特性（包括jdk8及之后的特性）
+11. demo-jdk_new jdk新特性（包括jdk8及之后的特性）
+12. demo-mongodb
 
 
 
