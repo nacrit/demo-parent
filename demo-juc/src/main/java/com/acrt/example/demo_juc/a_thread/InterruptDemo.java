@@ -1,4 +1,4 @@
-package com.acrt.example.demo_juc.thread;
+package com.acrt.example.demo_juc.a_thread;
 
 import lombok.extern.slf4j.Slf4j;
 

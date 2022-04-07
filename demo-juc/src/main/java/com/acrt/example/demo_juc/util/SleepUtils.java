@@ -7,12 +7,14 @@ public class SleepUtils {
     /**
      * 休眠second秒
      *
-     * @param second 秒
+     * @param milliSecond 秒
      */
-    public synchronized static void sleep(long second) {
+    private synchronized static void sleep(long milliSecond) {
         try {
-            TimeUnit.SECONDS.sleep(second);
+            TimeUnit.MILLISECONDS.sleep(milliSecond);
         } catch (InterruptedException e) {
+            // 恢复打断标记
+            Thread.currentThread().interrupt();
             e.printStackTrace();
         }
     }
@@ -23,10 +25,6 @@ public class SleepUtils {
      * @param second 秒
      */
     public synchronized static void sleep(double second) {
-        try {
-            TimeUnit.MILLISECONDS.sleep((long) (second * 1000L));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep((long) (second * 1_000L));
     }
 }
