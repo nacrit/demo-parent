@@ -26,9 +26,11 @@ public class DirectMemoryOOM {
             while (true) {
                 unsafe.allocateMemory(_1MB);
                 ++i;
+                Thread.sleep(20);
             }
         } catch (Throwable e) {
             System.out.println(i);
+            throw e;
         }
         /*
         结果：
