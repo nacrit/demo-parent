@@ -460,13 +460,13 @@ public class HashMapTest<K, V> extends HashMap<K, V> {
 //                        HashMap.Node<K,V> next;
 //                        do { // 遍历链表节点
 //                            next = e.next; // 下一个节点
-//                            if ((e.hash & oldCap) == 0) { // 此时元素放低位
+//                            if ((e.hash & oldCap) == 0) { // 判断高位是否为0，为0放回原容器中，若为1则放到高位出
 //                                if (loTail == null) // 尾部为null说明是第一次添加，设置到头节点
 //                                    loHead = e;
 //                                else // 将节点加入到链尾
 //                                    loTail.next = e;
 //                                loTail = e; // 尾部指针修改
-//                            } else { // 此时元素放高位
+//                            } else { // 若为1则放到高位出，此时元素放高位
 //                                if (hiTail == null)
 //                                    hiHead = e;
 //                                else
