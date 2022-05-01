@@ -31,7 +31,6 @@ build/
 .vscode/
 /**/.mvn/
 /**/.gitignore
-/**/demo-juc.iml
 /**/HELP.md
 /**/mvnw
 /**/mvnw.cmd
