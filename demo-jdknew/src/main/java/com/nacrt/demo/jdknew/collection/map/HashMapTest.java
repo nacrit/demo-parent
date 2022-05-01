@@ -14,24 +14,27 @@ import java.util.stream.IntStream;
 public class HashMapTest<K, V> extends HashMap<K, V> {
 
     public static void main(String[] args) {
-        // 小测试
-        HashMap<String, String> map = new HashMap<>(64);
-        map.put("xx", "aa");
-        System.out.println("map = " + map);
-        // 添加的元素都是一个节点上的，>8时会转化为红黑树
-        map.putAll(IntStream.rangeClosed(0, 100000)
-                .mapToObj(String::valueOf)
-                .filter(s -> (((s.hashCode()) ^ (s.hashCode() >>> 16)) & 63) == 0)
-                .limit(9)
-                .collect(Collectors.toMap(Function.identity(), Function.identity())));
-        System.out.println("map = " + map);
-        // 红黑树的结构还保留了单向链表的特性，是否包含实际用的时遍历链表
-        System.out.println(map.containsValue("aa"));
-        Set<String> keySet = map.keySet();
-        System.out.println(keySet);
-        System.out.println("keySet.remove(\"xx\") = " + keySet.remove("xx"));
-        System.out.println(keySet);
-        System.out.println("map = " + map);
+        //// 小测试
+        //HashMap<String, String> map = new HashMap<>(64);
+        //map.put("xx", "aa");
+        //System.out.println("map = " + map);
+        //// 添加的元素都是一个节点上的，>8时会转化为红黑树
+        //map.putAll(IntStream.rangeClosed(0, 100000)
+        //        .mapToObj(String::valueOf)
+        //        .filter(s -> (((s.hashCode()) ^ (s.hashCode() >>> 16)) & 63) == 0)
+        //        .limit(9)
+        //        .collect(Collectors.toMap(Function.identity(), Function.identity())));
+        //System.out.println("map = " + map);
+
+        //// 红黑树的结构还保留了单向链表的特性，是否包含实际用的时遍历链表
+        //System.out.println(map.containsValue("aa"));
+        // keySet测试，KeySet是一个内部类，其不存储元素，都是对HashMap中元素的映射
+        // 如：toString()使用的是父类中的方法，调用了KeySet的iterator()
+        //Set<String> keySet = map.keySet();
+        //System.out.println(keySet);
+        //System.out.println("keySet.remove(\"xx\") = " + keySet.remove("xx"));
+        //System.out.println(keySet);
+        //System.out.println("map = " + map);
 
 //        System.out.println("ts = " + tableSizeFor(4));
 //        Random random = new Random();
@@ -48,6 +51,17 @@ public class HashMapTest<K, V> extends HashMap<K, V> {
 //        System.out.println("low = " + low);
 //        System.out.println("hei = " + hei);
 //        System.out.println("low.size() = " + low.size() + ",hei.size()=" + hei.size());
+
+        // .............................................................
+        //// clone测试
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("aa", "11");
+        map.put("bb", "22");
+        map.put("cc", "33");
+        map.put("map", map);
+        //Object clone = map.clone();
+        //System.out.println(clone);
+        //System.out.println(map);
 
 //        test1();
 //        test2();
@@ -244,9 +258,14 @@ public class HashMapTest<K, V> extends HashMap<K, V> {
         // 是否包含某个value，循环遍历所有的节点
         // public boolean containsValue(Object value)
 
-        // 所有key
+        // 所有key，keySet测试，KeySet是一个内部类，其不存储元素，都是对HashMap中元素的映射
+        // 如：remove(Object key)会同步删除HashMap的k-v对
+        // 如：toString()使用的是父类中的方法，调用了KeySet的iterator()
         // public Set<K> keySet()
+        // 类似KeySet，也是内部类：Values extends AbstractCollection<V>
+        // 如：调用clear()时会同步调用HashMap#clear()
         // public Collection<V> values()
+        // 类似KeySet，内部类：EntrySet extends AbstractSet<Map.Entry<K,V>>
         // public Set<Map.Entry<K,V>> entrySet()
 
         // 获取，如果不存在返回指定默认值
