@@ -1,5 +1,7 @@
 package com.nacrt.demo.jdknew.collection.map;
 
+import org.junit.Test;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -14,18 +16,6 @@ import java.util.stream.IntStream;
 public class HashMapTest<K, V> extends HashMap<K, V> {
 
     public static void main(String[] args) {
-        //// 小测试
-        //HashMap<String, String> map = new HashMap<>(64);
-        //map.put("xx", "aa");
-        //System.out.println("map = " + map);
-        //// 添加的元素都是一个节点上的，>8时会转化为红黑树
-        //map.putAll(IntStream.rangeClosed(0, 100000)
-        //        .mapToObj(String::valueOf)
-        //        .filter(s -> (((s.hashCode()) ^ (s.hashCode() >>> 16)) & 63) == 0)
-        //        .limit(9)
-        //        .collect(Collectors.toMap(Function.identity(), Function.identity())));
-        //System.out.println("map = " + map);
-
         //// 红黑树的结构还保留了单向链表的特性，是否包含实际用的时遍历链表
         //System.out.println(map.containsValue("aa"));
         // keySet测试，KeySet是一个内部类，其不存储元素，都是对HashMap中元素的映射
@@ -54,24 +44,37 @@ public class HashMapTest<K, V> extends HashMap<K, V> {
 
         // .............................................................
         //// clone测试
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("aa", "11");
-        map.put("bb", "22");
-        map.put("cc", "33");
-        map.put("map", map);
+        HashMap<String, Object> map2 = new HashMap<>();
+        map2.put("aa", "11");
+        map2.put("bb", "22");
+        map2.put("cc", "33");
+        map2.put("map", map2);
         //Object clone = map.clone();
         //System.out.println(clone);
         //System.out.println(map);
 
-//        test1();
-//        test2();
+    }
 
+    @Test
+    public void resizeTest() {
+        // 测试，当链表长度达到8时会转换为红黑树
+        HashMap<String, String> map = new HashMap<>(64);
+        map.put("xx", "aa");
+        System.out.println("map = " + map);
+        // 添加的元素都是一个节点上的，>8时会转化为红黑树
+        Map<String, String> ss = IntStream.rangeClosed(0, 2000)
+                .mapToObj(String::valueOf)
+                .filter(s -> (((s.hashCode()) ^ (s.hashCode() >>> 16)) & 63) == 0)
+                .collect(Collectors.toMap(Function.identity(), e -> UUID.randomUUID().toString()));
+        map.putAll(ss);
+        System.out.println("map = " + map);
     }
 
     /**
      * Field
      */
-    private static void test1() {
+    @Test
+    public void test1() {
         // Map接口的基于哈希表的实现。此实现提供所有可选的映射操作，并允许空值和空键。 （ HashMap类大致相当于Hashtable ，除了它是不同步的并且允许空值。）
         // 这个类不保证映射的顺序；特别是，它不保证订单会随着时间的推移保持不变。
 
@@ -171,7 +174,8 @@ public class HashMapTest<K, V> extends HashMap<K, V> {
     /**
      * 构造方法
      */
-    private static void test2() {
+    @Test
+    public void test2() {
         /*
         1.hashMap使用懒初始化机制:第一次添加时开始扩容
         2.负载因子如果不指定都是0.75f
@@ -206,7 +210,8 @@ public class HashMapTest<K, V> extends HashMap<K, V> {
     /**
      * 方法
      */
-    private static void test3() {
+    @Test
+    public void test3() {
         // 构造传map和putAll实现方法
         // final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict)
         // public int size()
