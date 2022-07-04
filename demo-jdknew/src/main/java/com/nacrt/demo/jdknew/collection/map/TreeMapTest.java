@@ -3,7 +3,6 @@ package com.nacrt.demo.jdknew.collection.map;
 import org.junit.Test;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class TreeMapTest {
@@ -16,7 +15,7 @@ public class TreeMapTest {
 
         // 错误示范2：key的类型不一致问题
         TreeMap<Object, Object> tm2 = new TreeMap<>();
-        tm2.put("1", null);
+        tm2.put(1.1, null);
         // Exception in thread "main" java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer
         tm2.put(2, null);
 
