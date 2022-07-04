@@ -44,14 +44,14 @@ public class HashMapTest<K, V> extends HashMap<K, V> {
 
         // .............................................................
         //// clone测试
-        HashMap<String, Object> map2 = new HashMap<>();
+        HashMap<Object, Object> map2 = new HashMap<>();
         map2.put("aa", "11");
         map2.put("bb", "22");
         map2.put("cc", "33");
-        map2.put("map", map2);
-        //Object clone = map.clone();
-        //System.out.println(clone);
-        //System.out.println(map);
+        Object clone = map2.clone();
+        map2.put(map2, map2);
+        System.out.println(clone);
+        System.out.println(map2);
 
     }
 
