@@ -16,6 +16,8 @@ public class Main {
         Car car = Driver.driverCar("benz");
         // 下命令：开车
         car.drive();
+
+        Driver.driverCar("bmw").drive();
     }
 }
 

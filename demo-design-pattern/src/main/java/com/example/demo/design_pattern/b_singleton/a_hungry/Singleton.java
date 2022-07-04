@@ -5,7 +5,7 @@ package com.example.demo.design_pattern.b_singleton.a_hungry;
  */
 public class Singleton {
     //在自己内部定义自己一个实例 //注意这是 private 只供内部调用
-    private static Singleton instance = new Singleton();
+    private static final Singleton instance = new Singleton();
 
     //如上面所述，将构造函数设置为私有
     private Singleton() {

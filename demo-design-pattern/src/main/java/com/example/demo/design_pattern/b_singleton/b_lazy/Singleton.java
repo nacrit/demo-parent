@@ -10,16 +10,20 @@ package com.example.demo.design_pattern.b_singleton.b_lazy;
  */
 public class Singleton {
 
-    private static Singleton instance  = null;
+    private volatile static Singleton instance = null;
 
     private Singleton() {
     }
 
-    // 为防止多线程安全 加上了同步
-    public static synchronized Singleton getInstance() {
-        if (instance  == null) {
-            instance  = new Singleton();
+    // 双检锁/双重校验锁（DCL，即 double-checked locking）
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            }
         }
-        return instance ;
+        return instance;
     }
 }
