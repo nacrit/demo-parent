@@ -14,8 +14,8 @@ public enum AgeEnum implements IEnum<Integer> {
     TWO(2, "二岁"),
     THREE(3, "三岁");
 
-    private int value;
-    private String desc;
+    private final int value;
+    private final String desc;
     AgeEnum(int value, String desc) {
         this.value = value;
         this.desc = desc;
