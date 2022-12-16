@@ -28,6 +28,8 @@
         <module>demo-spring5</module>
         <module>demo-juc</module>
         <module>demo-jdknew</module>
+        <module>demo-data-struct</module>
+        <module>demo-jvm</module>
     </modules>
 
     <properties>
