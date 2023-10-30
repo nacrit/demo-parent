@@ -1,13 +1,35 @@
-
-### 登录
-POST http://localhost:8081/login?account=zhangsan&password=123456
-Content-Type: application/x-www-form-urlencoded
-
 ### 注册
-POST http://localhost:8081/register
+POST {{url}}/register
 Content-Type: application/json
 
 {
-  "userName": "zhangsan",
-  "userPassword": "123456"
+  "userName": "{{account}}",
+  "userPassword": "{{password}}"
 }
+
+
+### 登录
+POST {{url}}/login?account={{account}}&password={{password}}
+Content-Type: application/x-www-form-urlencoded
+
+
+### 适配器-注册 ---
+POST {{url}}/adapter/register
+Content-Type: application/json
+
+{
+  "userName": "{{account}}",
+  "userPassword": "{{password}}"
+}
+
+
+### 适配器-登录
+POST {{url}}/adapter/login?account={{account}}&password={{password}}
+Content-Type: application/x-www-form-urlencoded
+
+
+### 适配器-登录
+POST {{url}}/adapter/gitee?code=&state=
+Content-Type: application/x-www-form-urlencoded
+
+

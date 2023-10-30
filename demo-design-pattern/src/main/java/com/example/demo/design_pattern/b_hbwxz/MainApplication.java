@@ -1,4 +1,4 @@
-package com.example.demo.design_pattern.b_hbwxz.a_base;
+package com.example.demo.design_pattern.b_hbwxz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

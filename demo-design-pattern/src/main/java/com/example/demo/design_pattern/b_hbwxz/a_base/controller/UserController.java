@@ -2,10 +2,11 @@ package com.example.demo.design_pattern.b_hbwxz.a_base.controller;
 
 import com.example.demo.design_pattern.b_hbwxz.a_base.pojo.UserInfo;
 import com.example.demo.design_pattern.b_hbwxz.a_base.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author mars
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class UserController {
-    @Autowired
+    @Resource
     private UserService userService;
 
     @PostMapping("/login")

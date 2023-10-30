@@ -2,10 +2,9 @@ package com.example.demo.design_pattern.b_hbwxz.a_base.service;
 
 import com.example.demo.design_pattern.b_hbwxz.a_base.pojo.UserInfo;
 import com.example.demo.design_pattern.b_hbwxz.a_base.repo.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import javax.annotation.Resource;
 
 /**
  * @author mars
@@ -14,7 +13,7 @@ import java.util.Date;
  */
 @Service
 public class UserService {
-    @Autowired
+    @Resource
     private UserRepository userRepository;
 
     /**
@@ -29,7 +28,7 @@ public class UserService {
         return "注册成功";
     }
 
-    private boolean checkUserExists(String userName) {
+    public boolean checkUserExists(String userName) {
         return userRepository.findByUserName(userName) != null;
     }
 

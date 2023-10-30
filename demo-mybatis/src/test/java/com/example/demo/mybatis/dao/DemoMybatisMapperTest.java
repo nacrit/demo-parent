@@ -18,7 +18,7 @@ public class DemoMybatisMapperTest {
     @Test
     public void selectByPrimaryKey() throws InterruptedException {
         DemoMybatis demoMybatis = demoMybatisMapper.selectByPrimaryKey(1);
-        while (true) {
+        while (demoMybatis != null) {
             System.out.println("demoMybatis：" + demoMybatis);
             Thread.sleep(1000);
             demoMybatis = demoMybatisMapper.selectByPrimaryKey(1);
