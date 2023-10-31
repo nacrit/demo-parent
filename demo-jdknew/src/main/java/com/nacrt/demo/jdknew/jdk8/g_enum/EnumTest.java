@@ -18,7 +18,8 @@ public class EnumTest {
                     System.out.println("SUCCESS = " + SUCCESS);
                     System.out.println("code = " + SUCCESS.getCode());
                     System.out.println("msg = " + SUCCESS.getMsg());
-                    System.out.println("SUCCESS = " + FAIL);
+                    System.out.println("IBaseEnum.valueOf(200) = " + IBaseEnum.valueOf(DemoEnum.class, 200));
+                    System.out.println("FAIL = " + FAIL);
                     System.out.println("code = " + FAIL.getCode());
                     System.out.println("msg = " + FAIL.getMsg());
                     System.out.println("----------------------");
@@ -31,6 +32,12 @@ public class EnumTest {
                     System.out.println("hello = " + Demo2Enum.HELLO);
                     System.out.println("code = " + Demo2Enum.HELLO.getCode());
                     System.out.println("msg = " + Demo2Enum.HELLO.getMsg());
+//                    System.out.println("-------------------------");
+//                    DemoClass demoClass = new DemoClass("test", "demoClass");
+//                    System.out.println("demoClass = " + demoClass);
+//                    System.out.println("code = " + demoClass.getCode());
+//                    System.out.println("msg = " + demoClass.getMsg());
+//                    System.out.println("IBaseEnum.valueOf(200) = " + IBaseEnum.valueOf(DemoClass.class, "demoClass"));
                 });
     }
 }
