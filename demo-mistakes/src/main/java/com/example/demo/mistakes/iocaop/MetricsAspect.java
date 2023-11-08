@@ -49,7 +49,7 @@ public class MetricsAspect {
     }
 
     //@annotation指示器实现对标记了Metrics注解的方法进行匹配
-    @Pointcut("within(@com.java.error.example.demo.error.demo19.iocaop.Metrics *)")
+    @Pointcut("within(@com.example.demo.mistakes.iocaop.Metrics *)")
     public void withMetricsAnnotation() {
     }
 

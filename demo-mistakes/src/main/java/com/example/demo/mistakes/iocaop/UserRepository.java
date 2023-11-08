@@ -1,4 +1,4 @@
-package com.example.demo.mistakes.iocaop;//package com.java.error.example.demo.error.demo19.iocaop;
+package com.example.demo.mistakes.iocaop;//package com.example.demo.mistakes.demo19.iocaop;
 //
 //import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.stereotype.Repository;

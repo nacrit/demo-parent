@@ -1,4 +1,4 @@
-package com.example.demo.mistakes.demo02;//package com.java.error.example.demo.error.demo02;
+package com.example.demo.mistakes.demo02;//package com.example.demo.mistakes.demo02;
 //
 //import org.junit.Test;
 //import org.junit.runner.RunWith;

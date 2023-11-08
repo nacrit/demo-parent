@@ -1,6 +1,6 @@
 package com.example.demo.mistakes.demo22.api_resposne;
 
-import com.java.error.example.demo.error.common.Utils;
+import com.example.demo.mistakes.common.Utils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author zhenghao
  * @date 2020/9/14 10:42
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class CommonMistakesApplication {
 
     public static void main(String[] args) {

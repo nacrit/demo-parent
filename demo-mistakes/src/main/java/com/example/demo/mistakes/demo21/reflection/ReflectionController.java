@@ -1,7 +1,7 @@
 package com.example.demo.mistakes.demo21.reflection;
 
-import com.java.error.example.demo.error.demo21.reflection.ordinary.BankService;
-import com.java.error.example.demo.error.demo21.reflection.right.BetterBankService;
+import com.example.demo.mistakes.demo21.reflection.ordinary.BankService;
+import com.example.demo.mistakes.demo21.reflection.right.BetterBankService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

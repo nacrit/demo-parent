@@ -1,6 +1,6 @@
 package com.example.demo.mistakes.demo32.model;
 
-import com.java.error.example.demo.error.demo31.Product;
+import com.example.demo.mistakes.demo31.Product;
 import lombok.Data;
 
 import java.time.LocalDateTime;

@@ -1,9 +1,9 @@
 package com.example.demo.mistakes.demo21.template_method;
 
-import com.java.error.example.demo.error.demo21.template_method.ordinary.InternalUserCart;
-import com.java.error.example.demo.error.demo21.template_method.ordinary.NormalUserCart;
-import com.java.error.example.demo.error.demo21.template_method.ordinary.VipUserCart;
-import com.java.error.example.demo.error.demo21.template_method.right.AbstractCart;
+import com.example.demo.mistakes.demo21.template_method.ordinary.InternalUserCart;
+import com.example.demo.mistakes.demo21.template_method.ordinary.NormalUserCart;
+import com.example.demo.mistakes.demo21.template_method.ordinary.VipUserCart;
+import com.example.demo.mistakes.demo21.template_method.right.AbstractCart;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

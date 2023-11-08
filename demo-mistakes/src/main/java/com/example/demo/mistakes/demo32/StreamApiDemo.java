@@ -1,9 +1,9 @@
 package com.example.demo.mistakes.demo32;
 
-import com.java.error.example.demo.error.demo31.Product;
-import com.java.error.example.demo.error.demo32.model.Customer;
-import com.java.error.example.demo.error.demo32.model.Order;
-import com.java.error.example.demo.error.demo32.model.OrderItem;
+import com.example.demo.mistakes.demo31.Product;
+import com.example.demo.mistakes.demo32.model.Customer;
+import com.example.demo.mistakes.demo32.model.Order;
+import com.example.demo.mistakes.demo32.model.OrderItem;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

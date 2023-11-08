@@ -1,7 +1,7 @@
 package com.example.demo.mistakes.demo21.template_method.right;
 
-import com.java.error.example.demo.error.demo21.template_method.Db;
-import com.java.error.example.demo.error.demo21.template_method.Item;
+import com.example.demo.mistakes.demo21.template_method.Db;
+import com.example.demo.mistakes.demo21.template_method.Item;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
