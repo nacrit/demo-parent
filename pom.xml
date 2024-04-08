@@ -30,6 +30,7 @@
         <module>demo-jdknew</module>
         <module>demo-data-struct</module>
         <module>demo-jvm</module>
+        <module>demo-http</module>
     </modules>
 
     <properties>
