@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WebSocket Test</title>
+    <script th:inline="javascript">
+        // var socket = new WebSocket([[@{/websocket}]]);
+        var socket = new WebSocket("ws://localhost:8080/websocket");
+            socket.onopen = function(event) {
+                console.log('Connection open!');
+                socket.send('Hello Server!');
+                for (let i = 0; i < 1; i++) {
+                    socket.send('Hello Server!' + i);
+                }
+            };
+
+        socket.onmessage = function(event) {
+            console.log('Received: ' + event.data);
+        };
+
+        socket.onerror = function(error) {
+            console.error('Error detected: ' + error);
+        };
+
+        socket.onclose = function(event) {
+            console.log('Connection closed');
+        };
+        document.getElementById("btn").onclick = function () {
+            let msg = document.getElementById("ip").value;
+            socket.send(msg);
+        }
+    </script>
+</head>
+<body>
+<h1>WebSocket Test Page</h1>
+<input id="ip" value="hello" />
+<button id="btn">btn</button>
+</body>
+</html>
