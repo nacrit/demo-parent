@@ -35,7 +35,11 @@ public class VueDataController {
 
     @PostMapping
     public Boolean add(@RequestBody User user) {
-        if (user.getId() == null) return false;
+        if (user.getId() == null) {
+            user.setId(USER_LIST.stream().map(User::getId).max(Long::compareTo).orElse(1L));
+        } else if (USER_LIST.stream().anyMatch(e -> e.getId().compareTo(user.getId()) == 0)) {
+            return false;
+        }
         return USER_LIST.add(user);
     }
 
