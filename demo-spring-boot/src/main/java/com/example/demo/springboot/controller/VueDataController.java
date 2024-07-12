@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * @date 2024/6/28 10:21
  */
 @Slf4j
-//@CrossOrigin
+@CrossOrigin
 @RestController
 @RequestMapping("/vue3/data")
 public class VueDataController {
@@ -64,7 +64,7 @@ public class VueDataController {
     }
 
 
-    @PostMapping
+    @PostMapping("/login")
     public Boolean login(@RequestBody User user) {
         log.info("[登陆用户] user={}", user);
         return USER_LIST.stream().anyMatch(e -> e.getName().equals(user.getName()) && e.getPassword().equals(user.getPassword()));
