@@ -14,8 +14,8 @@ public class InterruptDemo {
 
     public static void main(String[] args) {
 //        testSleep();
-//        testRunnable();
-        testPark();
+        testRunnable();
+//        testPark();
     }
 
     /**
@@ -59,18 +59,25 @@ public class InterruptDemo {
     private static void testPark() {
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 3; i++) {
-                log.debug("park...");
-                log.debug("打断状态：{}", Thread.currentThread().isInterrupted());
-                LockSupport.park(); // 暂停线程执行，打断之后再执行park会失效（不再暂停），可以使用Thread.interrupted()清楚打断状态
-                log.debug("unPark..."); // 打断之后执行
-                log.debug("打断状态：{}", Thread.currentThread().isInterrupted());
+                log.debug("1. park..  打断状态: {}", Thread.currentThread().isInterrupted());
+                // 线程暂停
+                LockSupport.park(); // 暂停线程执行，打断之后再执行park会失效（不再暂停），可以使用Thread.interrupted()清除打断状态
+                // 线程恢复后执行
+                log.debug("2. unpark.. 打断状态：{}", Thread.currentThread().isInterrupted());
 
-                if (i == 1) { Thread.interrupted();} // 清楚打断状态，之后的park有效
+                if (i == 1) {
+                    Thread.interrupted();// 清楚打断状态，之后的park有效
+                    log.debug("3. 清除打断标记 打断状态：{}", Thread.currentThread().isInterrupted());
+                }
             }
         }, "t1");
         t1.start();
-        sleep(0.5);
-        t1.interrupt();
+        sleep(1);
+        log.debug("4. 开始打断线程 ..");
+        t1.interrupt(); // 被打断的线程，park会失效，之后也无法再park，可以使用Thread.interrupted()清除打断状态，之后可再park
+        sleep(1);
+        log.debug("5. 开始 unpark 线程 ..");
+        LockSupport.unpark(t1);
     }
 
 }

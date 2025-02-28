@@ -18,15 +18,17 @@ public class StateDemo {
 
         // RUNNABLE 正在运行的线程
         Thread t2 = new Thread(() -> {
+            log.debug("t2 running .. ");
             for (; ; ) {
-//                log.debug("t2 running .. ");
             }
+//            log.debug("t2 completed .. ");
         }, "t2");
         t2.start();
 
         // TERMINATED 已完成的线程
         Thread t3 = new Thread(() -> {
             log.debug("t3 running .. ");
+            log.debug("t3 completed .. ");
         }, "t3");
         t3.start();
 
@@ -34,7 +36,8 @@ public class StateDemo {
         Thread t4 = new Thread(() -> {
             synchronized (StateDemo.class) {
                 log.debug("t4 running .. ");
-                sleep(1000L);
+                sleep(5L);
+                log.debug("t4 completed .. ");
             }
         }, "t4");
         t4.start();
@@ -42,20 +45,23 @@ public class StateDemo {
         // WAITING 等待别的线程的线程
         Thread t5 = new Thread(() -> {
             try {
-                t2.join(); // 等待t2线程
                 log.debug("t5 running .. ");
+                t2.join(); // 等待t2线程执行完
+                log.debug("t5 completed .. ");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.warn("t5 interrupted .. ", e);
             }
         }, "t5");
         t5.start();
 
         // BLOCKED 同步锁阻塞的线程
         Thread t6 = new Thread(() -> {
+            log.debug("t6 running 1 .. ");
             sleep(0.1);
             synchronized (StateDemo.class) {
-                log.debug("t6 running .. ");
+                log.debug("t6 running 2 .. ");
             }
+            log.debug("t6 completed .. ");
         }, "t6");
         t6.start();
 
@@ -66,7 +72,6 @@ public class StateDemo {
         log.debug("t4 state:{}", t4.getState());
         log.debug("t5 state:{}", t5.getState());
         log.debug("t6 state:{}", t6.getState());
-
     }
 
 }
