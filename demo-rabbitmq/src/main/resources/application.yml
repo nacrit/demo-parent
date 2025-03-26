@@ -1,0 +1,16 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    # 可选配置：开启消息确认模式
+    listener:
+      simple:
+        acknowledge-mode: manual # 手动ACK
+#        retry:
+#          enabled: true          # 开启消费者重试
+#          max-attempts: 3        # 最大重试次数
+#          initial-interval: 1000 # 重试间隔
+#    publisher-confirm-type: correlated # 启用发布者确认（支持 CORRELATED 或 SIMPLE）

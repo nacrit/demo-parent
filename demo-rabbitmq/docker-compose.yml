@@ -1,0 +1,20 @@
+# docker run -d --name my-rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:4.0.7-management
+services:
+  rabbitmq:
+#    image: rabbitmq:3.13.0-management
+    image: rabbitmq:4.0.7-management
+    container_name: my-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes: # 这里的插件目录没有用整个目录做映射，因为那样会覆盖容器内原有的插件，导致容器无法启动
+      - ./data/rabbitmq_data:/var/lib/rabbitmq
+#      - ./config/plugins/rabbitmq_delayed_message_exchange-3.13.0.ez:/opt/rabbitmq/plugins/rabbitmq_delayed_message_exchange-3.13.0.ez
+      - ./config/plugins/rabbitmq_delayed_message_exchange-v4.0.7.ez:/opt/rabbitmq/plugins/rabbitmq_delayed_message_exchange-v4.0.7.ez
+    command: sh -c "rabbitmq-plugins enable --offline rabbitmq_delayed_message_exchange && rabbitmq-server"
+
+
+
