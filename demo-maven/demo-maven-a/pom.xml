@@ -9,39 +9,45 @@
     </parent>
     <artifactId>A</artifactId>
 
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            <dependency>-->
-<!--                <groupId>com.example</groupId>-->
-<!--                <artifactId>X</artifactId>-->
-<!--                <version>2.0.0</version>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>X</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>D</artifactId>
+            <artifactId>D</artifactId>  <!-- D 依赖 X(v2.0) -->
             <version>1.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.example</groupId>
-                    <artifactId>X</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.example</groupId>-->
+<!--                    <artifactId>X</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>B</artifactId>
+            <artifactId>B</artifactId>  <!-- B 依赖 X(v1.0) -->
             <version>1.0.0</version>
         </dependency>
+
 
 <!--        <dependency>-->
 <!--            <groupId>com.example</groupId>-->
 <!--            <artifactId>X</artifactId>-->
-<!--            <version>1.0.0</version>-->
+<!--            <version>3.0.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.example</groupId>-->
+<!--            <artifactId>X</artifactId>-->
+<!--            <version>4.0.0</version>-->
 <!--        </dependency>-->
     </dependencies>
 

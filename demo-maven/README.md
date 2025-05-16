@@ -6,11 +6,19 @@
 项目A → 依赖C → 依赖D → 依赖X(v2.0)
 传递依赖中路径更短的版本优先。 最终会选择 依赖X(v1.0)
 ```
-### 1.2 先声明优先（First Declaration Wins）​​​​
+### 1.2 先声明优先（First Declaration Wins）
 ```xml
 <dependencies>
-  <dependency>D</dependency> <!-- D 依赖 X(v2.0) -->
-  <dependency>B</dependency> <!-- B 依赖 X(v1.0) -->
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>D</artifactId> <!-- D 依赖 X(v2.0) -->
+        <version>1.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>B</artifactId> <!-- B 依赖 X(v1.0) -->
+        <version>1.0.0</version>
+    </dependency>
 </dependencies>
 ```
 > 当路径长度相同，依赖声明顺序决定优先级。最终会选择 D 依赖 X(v2.0)
@@ -21,10 +29,25 @@
 ```xml
 <dependencies>
     <dependency>
-	    <groupId>com.example</groupId>
-	    <artifactId>X</artifactId>
-	    <version>1.0.0</version>
-	</dependency>
+        <groupId>com.example</groupId>
+        <artifactId>X</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+```
+> *** 显式声明 同一模块 后声明的会覆盖前声明，如下 4.0.0 会 覆盖 3.0.0
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.example</groupId>
+    <artifactId>X</artifactId>
+    <version>3.0.0</version>
+  </dependency>
+  <dependency>
+    <groupId>com.example</groupId>
+    <artifactId>X</artifactId>
+    <version>4.0.0</version>
+  </dependency>
 </dependencies>
 ```
 

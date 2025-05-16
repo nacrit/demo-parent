@@ -17,4 +17,5 @@
 ## 15. demo-http http相关工具demo [demo-http](demo-http)
 ## 16. demo-mistakes java错误案例及解决方案呢 [demo-mistakes](demo-mistakes)
 ## 17. demo-rabbitmq rabbitmq demo案例 [demo-rabbitmq](demo-rabbitmq)
-## 18. todo ..
+## 18. demo-maven maven依赖冲突问题 [demo-maven](demo-maven)
+## 19. todo ..
